@@ -1,135 +1,192 @@
-import { useState, useEffect } from 'react'
-import { AnimatedPxlKitIcon, PxlKitIcon } from '@pxlkit/core'
-import { Package, SparkleSmall, Check, Robot, LoadingSpinner } from '@pxlkit/ui'
-import { PixelButton } from '@pxlkit/ui-kit'
+import { useState, useEffect } from 'react';
+import { PxlKitIcon } from '@pxlkit/core';
+import { Package, Robot, Search, Gear } from '@pxlkit/ui';
+import { Trophy, Coin, Sword, Shield, Crown, Lightning } from '@pxlkit/gamification';
+import { InfoCircle, WarningTriangle, CheckCircle, Bell } from '@pxlkit/feedback';
+import {
+  PixelButton,
+  PixelCard,
+  PixelBadge,
+  PixelInput,
+  PixelProgress,
+  PixelAlert,
+  PixelTabs,
+  PixelTable,
+  PxlKitButton,
+  PixelPulse,
+  PixelDivider,
+  PixelAvatar,
+  PixelStatCard,
+  PixelChip
+} from '@pxlkit/ui-kit';
 
 function App() {
-  const [isMinting, setIsMinting] = useState(false)
-  const [supply, setSupply] = useState(1337)
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(45);
 
-  // Demo auto-increment supply
   useEffect(() => {
     const timer = setInterval(() => {
-      setSupply(s => Math.min(s + Math.floor(Math.random() * 3), 10000))
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [])
+      setProgress(p => (p >= 100 ? 0 : p + 5));
+    }, 1500);
+    return () => clearInterval(timer);
+  }, []);
 
-  const handleMint = () => {
-    setIsMinting(true)
-    setTimeout(() => {
-      setIsMinting(false)
-      alert('Mint successful!')
-    }, 2000)
-  }
+  const handleAction = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  };
 
   return (
-    <div className="min-h-screen p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-retro-bg p-4 sm:p-8 flex flex-col items-center font-body text-retro-text">
       
-      {/* Navbar */}
-      <nav className="w-full max-w-4xl flex justify-between items-center mb-16">
-        <div className="flex items-center gap-3">
-          <PxlKitIcon 
-            icon={Package} 
-            size={32} 
-            color="#4F46E5"
-            colorful={true}
-          />
-          <h1 className="font-pixel text-xl tracking-tighter text-retro-primary">PXL Punks</h1>
+      {/* Navigation */}
+      <nav className="w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center mb-8 bg-retro-surface p-4 border-2 border-retro-border rounded-lg shadow-retro-sm">
+        <div className="flex items-center gap-3 mb-4 sm:mb-0">
+          <PixelPulse>
+            <PxlKitIcon icon={Package} size={32} color="#4F46E5" colorful={true} />
+          </PixelPulse>
+          <h1 className="font-pixel text-xl tracking-tighter text-retro-primary">PXL DASHBOARD</h1>
         </div>
-        <PixelButton tone="cyan" size="sm">
-          Connect Wallet
-        </PixelButton>
+        <div className="flex items-center gap-4">
+          <PixelInput 
+            placeholder="Search assets..." 
+            icon={<PxlKitIcon icon={Search} size={16} />} 
+          />
+          <PxlKitButton icon={<PxlKitIcon icon={Bell} size={18} />} label="Notifications" tone="gold" />
+          <PixelAvatar name="P1" tone="purple" />
+        </div>
       </nav>
 
-      {/* Hero */}
-      <main className="w-full max-w-4xl grid md:grid-cols-2 gap-12 items-center flex-1">
+      {/* Main Content */}
+      <main className="w-full max-w-5xl space-y-8">
         
-        <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 bg-retro-secondary/20 text-retro-secondary 
-                          px-3 py-1 text-xs font-pixel rounded-full border border-retro-secondary/50">
-            <PxlKitIcon 
-              icon={SparkleSmall} 
-              size={12} 
-              color="#FBBF24"
-              colorful={true}
-            />
-            <span>Mint is Live</span>
+        {/* Header Section */}
+        <section className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h2 className="font-pixel text-2xl text-retro-text mb-2">Welcome Back, Player 1</h2>
+            <p className="text-retro-muted font-mono text-sm">Manage your assets, quests, and inventory effortlessly.</p>
           </div>
-          
-          <h2 className="font-pixel text-4xl leading-tight">
-            10,000 Fully <br/> 
-            <span className="text-retro-primary">On-Chain</span> Avatars
-          </h2>
-          
-          <p className="font-sans text-retro-muted text-lg max-w-sm">
-            Generated and rendered entirely on the blockchain using the PxlKit engine. No IPFS, no APIs. Just pure retro goodness.
-          </p>
-
-          {/* Features */}
-          <div className="grid grid-cols-2 gap-4 py-4">
-            <div className="flex items-center gap-2">
-              <PxlKitIcon icon={Check} size={24} color="#10B981" colorful={true} />
-              <span className="font-sans font-medium">100% On-Chain</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <PxlKitIcon icon={Check} size={24} color="#10B981" colorful={true} />
-              <span className="font-sans font-medium">CC0 License</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Mint Card */}
-        <div className="bg-white border-4 border-retro-border shadow-retro p-8 flex flex-col items-center gap-6 transform rotate-1 hover:rotate-0 transition-transform p-8">
-          
-          <div className="bg-retro-bg border-2 border-retro-border p-4 w-48 h-48 flex items-center justify-center pixel-corners">
-             <PxlKitIcon 
-                icon={Robot} 
-                size={96} 
-                color="#1D1D20"
-                colorful={true}
-             />
-          </div>
-
-          <div className="w-full space-y-4">
-            <div className="flex justify-between font-sans font-bold">
-              <span>Price</span>
-              <span>0.05 ETH</span>
-            </div>
-            <div className="flex justify-between font-sans text-retro-muted text-sm">
-              <span>Minted</span>
-              <span>{supply} / 10000</span>
-            </div>
-            
-            <div className="w-full bg-retro-bg h-4 border-2 border-retro-border p-0.5">
-              <div 
-                className="bg-retro-primary h-full transition-all duration-500" 
-                style={{ width: `${(supply/10000)*100}%` }}
-              />
-            </div>
-
-            <PixelButton 
-              onClick={handleMint}
-              disabled={isMinting}
-              tone="green"
-              size="lg"
-              className="w-full flex justify-center items-center gap-3">
-              {isMinting ? (
-                <>
-                  <AnimatedPxlKitIcon icon={LoadingSpinner} size={16} color="white" colorful={true} />
-                  MINTING...
-                </>
-              ) : (
-                'MINT 1 PUNK'
-              )}
+          <div className="flex gap-3">
+            <PixelButton tone="neutral" variant="ghost" iconLeft={<PxlKitIcon icon={Gear} size={16} />}>Settings</PixelButton>
+            <PixelButton tone="green" iconLeft={<PxlKitIcon icon={Lightning} size={16} colorful={true} />} loading={loading} onClick={handleAction}>
+              Quick Action
             </PixelButton>
           </div>
-        </div>
+        </section>
+
+        {/* Stats Row */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <PixelStatCard 
+            label="Total XP" 
+            value="12,450" 
+            icon={<PxlKitIcon icon={Trophy} size={20} colorful={true} />} 
+            tone="gold" 
+          />
+          <PixelStatCard 
+            label="Gold Coins" 
+            value="8,920" 
+            icon={<PxlKitIcon icon={Coin} size={20} colorful={true} />} 
+            tone="gold" 
+          />
+          <PixelStatCard 
+            label="Quests Done" 
+            value="45" 
+            icon={<PxlKitIcon icon={CheckCircle} size={20} color="#10B981" colorful={true} />} 
+            tone="green" 
+          />
+          <PixelStatCard 
+            label="Rank" 
+            value="Diamond" 
+            icon={<PxlKitIcon icon={Crown} size={20} colorful={true} />} 
+            tone="purple" 
+          />
+        </section>
+
+        {/* Alerts & Progress */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+             <h3 className="font-pixel text-sm text-retro-muted">LATEST ALERTS</h3>
+             <PixelAlert 
+               tone="red" 
+               title="Critical Health" 
+               icon={<PxlKitIcon icon={WarningTriangle} size={18} />} 
+               message="Your shield durability is below 15%. Repair it immediately!"
+             />
+             <PixelAlert 
+               tone="cyan" 
+               title="System Update" 
+               icon={<PxlKitIcon icon={InfoCircle} size={18} />}
+               message="Version 2.0 is now live with enhanced retro capabilities."
+             />
+          </div>
+          <div className="space-y-4">
+             <h3 className="font-pixel text-sm text-retro-muted">CURRENT QUEST: THE CHOSEN ONE</h3>
+             <PixelCard title="Defeat the UI Dragon">
+                <div className="flex justify-between mb-2 font-mono text-sm">
+                   <span className="text-retro-text font-bold">Progress</span>
+                   <span className="text-retro-green">{progress}%</span>
+                </div>
+                <PixelProgress value={progress} tone="green" />
+                <div className="mt-6 flex flex-wrap gap-2">
+                   <PixelChip tone="gold" label="Combat" />
+                   <PixelChip tone="purple" label="Epic Tier" />
+                   <PixelChip tone="cyan" label="Defense" />
+                </div>
+             </PixelCard>
+          </div>
+        </section>
+
+        <PixelDivider tone="neutral" spacing="lg" />
+
+        {/* Inventory Interface */}
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <h3 className="font-pixel text-lg">Inventory System</h3>
+            <PixelTabs 
+              items={[
+                { id: 'all', label: 'All Items', content: null },
+                { id: 'weapons', label: 'Weapons', content: null },
+                { id: 'potions', label: 'Potions', content: null }
+              ]}
+              defaultTab="all"
+            />
+          </div>
+
+          <div className="overflow-x-auto">
+            <PixelTable 
+              columns={[
+                { key: 'item', header: 'Item' },
+                { key: 'type', header: 'Type' },
+                { key: 'rarity', header: 'Rarity' },
+                { key: 'action', header: 'Action' }
+              ]}
+              data={[
+                {
+                  item: <div className="flex items-center gap-3"><PxlKitIcon icon={Sword} size={32} colorful={true} /><span className="font-bold text-base">Excalibur</span></div>,
+                  type: <span className="font-mono text-retro-muted">Weapon</span>,
+                  rarity: <PixelBadge tone="gold">Legendary</PixelBadge>,
+                  action: <PixelButton size="sm" tone="green" variant="ghost">Equip</PixelButton>
+                },
+                {
+                  item: <div className="flex items-center gap-3"><PxlKitIcon icon={Shield} size={32} color="#4ECDC4" colorful={true} /><span className="font-bold text-base">Pixel Shield</span></div>,
+                  type: <span className="font-mono text-retro-muted">Armor</span>,
+                  rarity: <PixelBadge tone="cyan">Rare</PixelBadge>,
+                  action: <PixelButton size="sm" tone="green" variant="ghost">Equip</PixelButton>
+                },
+                {
+                  item: <div className="flex items-center gap-3"><PxlKitIcon icon={Robot} size={32} colorful={true} /><span className="font-bold text-base">Companion Bot</span></div>,
+                  type: <span className="font-mono text-retro-muted">Pet</span>,
+                  rarity: <PixelBadge tone="purple">Epic</PixelBadge>,
+                  action: <PixelButton size="sm" tone="purple" variant="ghost">Summon</PixelButton>
+                }
+              ]}
+            />
+          </div>
+        </section>
 
       </main>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
